@@ -15,20 +15,21 @@ import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ArrayList<String>target;
+    private ArrayList<String> target;
     private ArrayAdapter adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        String[] values =new String[] {"wpadla", "bomba","do","piwnicy","napisala","na","tablicy"};
+        String[] values = new String[]{"wpadla", "bomba", "do", "piwnicy", "napisala", "na", "tablicy"};
 
-        this.target =new ArrayList<String>();
+        this.target = new ArrayList<String>();
         this.target.addAll(Arrays.asList(values));
 
-        this.adapter=new ArrayAdapter(this,android.R.layout.simple_list_item_1,this.target);
-        ListView listview =(ListView) findViewById(R.id.listView);
+        this.adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, this.target);
+        ListView listview = (ListView) findViewById(R.id.listView);
         listview.setAdapter(this.adapter);
     }
 
@@ -39,11 +40,22 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-    public void nowyWpis(MenuItem mi)
-    {
-        Intent intencja = new Intent(this,
-                DodajWpis.class);
+    public void nowyWpis(MenuItem mi) {
+        Intent intencja = new Intent(this, DodajWpis.class);
         startActivityForResult(intencja, 1);
     }
-    //sdjsfghgkdfhgkhdfg
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1 && resultCode == RESULT_OK) {
+            Bundle extras = data.getExtras();
+            String nowy = (String) extras.get("wpis");
+            target.add(nowy);
+            adapter.notifyDataSetChanged();
+        }
+        //sdjsfghgkdfhgkhdfg
+    }
 }

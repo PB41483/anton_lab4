@@ -21,8 +21,9 @@
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:onClick="wyslij"
         android:text="Button"
-        tools:layout_editor_absoluteX="31dp"
-        tools:layout_editor_absoluteY="152dp"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="150dp"
+        tools:layout_editor_absoluteY="538dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
